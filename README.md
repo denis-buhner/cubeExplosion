@@ -1,1 +1,1 @@
-![GIF]("movie_001.gif")
+![GIF](movie_001.gif)
