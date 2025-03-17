@@ -5,7 +5,7 @@ public class CubeDestroyer : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
 
-    public event Action<Stats, bool> CubeDestroyed;
+    public event Action<CubeStats, bool> CubeDestroyed;
 
     private void OnEnable()
     {
@@ -22,7 +22,7 @@ public class CubeDestroyer : MonoBehaviour
         if (objectToDestroy == null)
             return;
 
-        Stats stats = objectToDestroy.GetComponent<Stats>();
+        CubeStats stats = objectToDestroy.GetComponent<CubeStats>();
 
         if (stats == null)
             return;

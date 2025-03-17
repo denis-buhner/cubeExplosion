@@ -23,14 +23,14 @@ public class CubeSpawner : MonoBehaviour
         _destroyer.CubeDestroyed -= Spawn;
     }
 
-    private void Spawn(Stats previousCubeStats, bool shooldSpawn)
+    private void Spawn(CubeStats previousCubeStats, bool shooldSpawn)
     {
         if(shooldSpawn)
         {
             for (int i = 0; i < Random.Range(_minChildCount, _maxChildCount); i++)
             {
                 GameObject cube = GameObject.CreatePrimitive(_primitiveType);
-                Stats stats = cube.AddComponent<Stats>();
+                CubeStats stats = cube.AddComponent<CubeStats>();
                 Rigidbody rb = cube.AddComponent<Rigidbody>();
                 cube.AddComponent<BoxCollider>();
 
