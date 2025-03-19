@@ -5,7 +5,7 @@ public class InputReader : MonoBehaviour
 {
     private KeyCode InputKey = KeyCode.Mouse0;
 
-    public event Action<Cube> ObjectSelected;
+    public event Action<Cube> CubeSelected;
 
     private void Update()
     {
@@ -21,9 +21,9 @@ public class InputReader : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.collider.gameObject.TryGetComponent(out Cube cube))
+                if (hit.collider.gameObject.TryGetComponent(out Cube cube))
                 {
-                    ObjectSelected?.Invoke(cube);
+                    CubeSelected?.Invoke(cube);
                 }
             }
         }
