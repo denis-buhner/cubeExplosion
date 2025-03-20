@@ -9,6 +9,14 @@ public class CubeSplitter : MonoBehaviour
     [SerializeField][Min(1)] private int _minSplitCount = 2;
     [SerializeField] private int _maxSplitCount = 6;
 
+    private void OnValidate()
+    {
+        if (_minSplitCount > _maxSplitCount)
+        {
+            _maxSplitCount = _minSplitCount;
+        }
+    }
+
     private void OnEnable()
     {
         _inputReader.CubeSelected += SplitCube;
@@ -19,21 +27,15 @@ public class CubeSplitter : MonoBehaviour
         _inputReader.CubeSelected -= SplitCube;
     }
 
-    private void OnValidate()
-    {
-        if (_minSplitCount > _maxSplitCount)
-        {
-            _maxSplitCount = _minSplitCount;
-        }
-    }
-
     private void SplitCube(Cube cube)
     {
         bool canSplit = Random.value <= cube.SplitChance;
 
         if(canSplit )
         {
-            for (int i = 0; i < Random.Range(_minSplitCount, _maxSplitCount); i++)
+            int splitCount = Random.Range(_minSplitCount, _maxSplitCount);
+
+            for (int i = 0; i < splitCount; i++)
             {
                 _exploser.Explose(_spawner.Spawn(cube));
             }

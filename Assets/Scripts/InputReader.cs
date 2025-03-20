@@ -3,20 +3,17 @@ using UnityEngine;
 
 public class InputReader : MonoBehaviour
 {
-    private KeyCode InputKey = KeyCode.Mouse0;
+    [SerializeField] private Camera _camera;
+
+    private KeyCode _inputKey = KeyCode.Mouse0;
 
     public event Action<Cube> CubeSelected;
 
     private void Update()
     {
-        GetInput();
-    }
-
-    private void GetInput()
-    {
-        if (Input.GetKeyDown(InputKey))
+        if (Input.GetKeyDown(_inputKey))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
