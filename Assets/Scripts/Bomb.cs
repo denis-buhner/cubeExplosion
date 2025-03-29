@@ -38,7 +38,6 @@ public class Bomb : MonoBehaviour
             if(target.TryGetComponent(out Rigidbody rigidbody))
             {
                 rigidbody.AddExplosionForce(_explosionForce, explosionPosition, _explosionRadius);
-                Debug.Log($"boom {rigidbody.gameObject} {_explosionForce} {_explosionRadius}");
             }
         }
 
