@@ -1,3 +1,4 @@
+using System.ComponentModel.Design;
 using UnityEngine;
 
 [RequireComponent(typeof(InputReader), typeof(Spawner), typeof(Exploser))]
@@ -37,8 +38,12 @@ public class CubeSplitter : MonoBehaviour
 
             for (int i = 0; i < splitCount; i++)
             {
-                _exploser.Explose(_spawner.Spawn(cube));
+                _exploser.Explose(_spawner.SpawnCube(cube));
             }
+        }
+        else
+        {
+            _spawner.SpawnBomb(cube);
         }
 
         cube.Destroy();

@@ -11,14 +11,16 @@ public class Cube : MonoBehaviour
     public float SplitChance => _splitChance;
     public Vector3 Position => transform.position;
     public Vector3 Scale => transform.localScale;
+    public float ReductionMultiplier { get; private set; } = 1;
 
-    public void Initialize(Vector3 position, Vector3 size, float splitChance)
+    public void Initialize(Vector3 position, Vector3 size, float splitChance, float reductionMultiplier)
     {
         transform.position = position;
         transform.localScale = size;
         transform.rotation = Random.rotation;
         _splitChance = splitChance;
         _meshRenderer.material.color = new Color(Random.value, Random.value, Random.value);
+        ReductionMultiplier = reductionMultiplier;
     }
 
     public void Destroy()
