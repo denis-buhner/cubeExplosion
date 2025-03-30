@@ -1,10 +1,9 @@
-using System.ComponentModel.Design;
 using UnityEngine;
 
-[RequireComponent(typeof(InputReader), typeof(Spawner), typeof(Exploser))]
+[RequireComponent(typeof(CubeSelector), typeof(Spawner), typeof(Exploser))]
 public class CubeSplitter : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
+    [SerializeField] private CubeSelector _inputReader;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private Exploser _exploser;
     [SerializeField][Min(1)] private int _minSplitCount = 2;
@@ -43,7 +42,9 @@ public class CubeSplitter : MonoBehaviour
         }
         else
         {
-            _spawner.SpawnBomb(cube);
+            float newExplosionRadius = _exploser.StartExplosionRadius * cube.ReductionMultiplier;
+            float newExplosionForce = _exploser.StartExplosionForce * cube.ReductionMultiplier;
+            _exploser.Explose(cube.Position, newExplosionRadius, newExplosionForce);
         }
 
         cube.Destroy();

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class InputReader : MonoBehaviour
+public class CubeSelector : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
 
